@@ -1,4 +1,6 @@
 Rails3Base::Application.routes.draw do
+  get "home/index"
+
   devise_for :users,
       :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
@@ -8,5 +10,5 @@ Rails3Base::Application.routes.draw do
     get 'signup', :to => 'devise/registrations#new', :as => 'new_user_registration'
   end
 
-  root :to => 'dashboard#index'
+  root :to => 'home#index'
 end
