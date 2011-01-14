@@ -1,6 +1,11 @@
 Rails3Base::Application.routes.draw do
-  resources :users, :only => [:index, :show]
+  resources :users, :only => [:index, :show] do
+    member do
+      get :following, :followers
+    end
+  end
   resources :posts
+  resources :friendships,   :only => [:create, :destroy]
 
   devise_for :users,
       :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}

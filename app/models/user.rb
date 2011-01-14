@@ -22,10 +22,30 @@ class User < ActiveRecord::Base
   end  
 
   def all_posts 
-    Post.find(:all, :order => "created_at DESC")
+    Post.find(:all, :conditions => ["user_id in (?)", following.collect{ |followed| followed.id }.push(self.id)], :order => "created_at DESC")
   end
 
   def user_posts 
     self.posts.order("created_at DESC")
+  end
+ 
+  def following?(followed)
+    friendships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    friendships.create!(:followed_id => followed.id)
+  end
+
+  def following_list
+    self.following
+  end
+
+  def followers_list
+    self.followers
+  end
+
+  def unfollow!(followed)
+    friendships.find_by_followed_id(followed).destroy
   end 
 end
