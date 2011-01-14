@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
 
+  has_many :posts, :dependent => :destroy
+
   include User::OmniAuthExtension
 
   attr_accessible :full_name, :email, :password, :password_confirmation
