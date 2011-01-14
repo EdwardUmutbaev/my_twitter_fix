@@ -12,4 +12,17 @@ class User < ActiveRecord::Base
   def full_name_with_email
     "#{self[:full_name]} (#{email})"
   end
+
+  def current_user?(user)
+    user  == current_user
+  end  
+
+  def all_posts 
+    Post.find(:all, :order => "created_at DESC")
+  end
+
+  def user_posts 
+    self.posts.order("created_at DESC")
+  end
+ 
 end

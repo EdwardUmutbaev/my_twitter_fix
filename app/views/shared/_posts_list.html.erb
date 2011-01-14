@@ -1,0 +1,9 @@
+<% posts.each do |post|%> 
+<div id="post_<%= post.id %>">
+    <%= link_to 'Avatar ' %>
+    <b><%= link_to post.user_full_name, post.user %></b>		
+    <%= post.message %> 
+    <i><%= distance_of_time_in_words_to_now(post.created_at) %> ago </i> <hr>
+</div>
+<% end %>
+

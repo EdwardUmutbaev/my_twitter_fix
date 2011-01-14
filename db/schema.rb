@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122224015) do
+ActiveRecord::Schema.define(:version => 20110114131316) do
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "user_identities", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20101122224015) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_identities", ["user_id"], :name => "index_user_identities_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

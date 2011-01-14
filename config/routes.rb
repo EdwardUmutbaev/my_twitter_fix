@@ -1,5 +1,6 @@
 Rails3Base::Application.routes.draw do
   resources :users, :only => [:index, :show]
+  resources :posts
 
   devise_for :users,
       :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
