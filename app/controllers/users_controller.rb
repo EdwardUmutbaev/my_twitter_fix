@@ -9,6 +9,8 @@ class UsersController < ApplicationController
      @posts = @user.user_posts  
     else
      @posts = @user.all_posts
-    end      
+    end 
+    @following = @user.following_list     
+    @followers = @user.followers_list     
   end 
 end

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   include User::OmniAuthExtension
 
+  has_attached_file :avatar, :styles => { :medium => "128x128>", :small => "48x48>" }, :default_url => "/system/avatars/default.png"
+
   has_many :posts, :dependent => :destroy
   has_many :friendships, :foreign_key => "follower_id", :dependent => :destroy
   has_many :following, :through => :friendships, :source => :followed

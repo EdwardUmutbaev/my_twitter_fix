@@ -1,9 +1,12 @@
+<div id="new_post">  
 <% posts.each do |post|%> 
-<div id="post_<%= post.id %>">
-    <%= link_to 'Avatar ' %>
-    <b><%= link_to post.user_full_name, post.user %></b>		
-    <%= post.message %> 
-    <i><%= distance_of_time_in_words_to_now(post.created_at) %> ago </i> <hr>
-</div>
+<div id="post_<%= post.id %>">  
+  <b><%= link_to post.user_full_name, post.user %></b>
+  <p><%= post.message %>
+  <p><i><%= distance_of_time_in_words_to_now(post.created_at) %> ago </i>
+    <% if current_user?(post.user) %>  
+      <%= link_to 'delete', post, :method => :delete, :remote=>true, :confirm => 'Are you sure you want to delete this tweet?'%>
+    <% end %> 
+</div><hr>
 <% end %>
-
+</div>

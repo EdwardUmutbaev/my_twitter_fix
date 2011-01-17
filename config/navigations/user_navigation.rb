@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
     if user_signed_in?      
       user.item :profile, 'Profile', current_user
       user.item :users, 'Users', users_path
-      user.item :account, current_user.full_name_with_email, edit_user_registration_path
+      #user.item :account, current_user.full_name_with_email, edit_user_registration_path
       user.item :setting, 'Setting', edit_user_registration_path
       user.item :sign_out, 'Sign out', destroy_user_session_path
     else

@@ -19,7 +19,11 @@
         <h1><%= yield(:title) %></h1>
       <% end %>
 
-      <%= yield %>
+      <div class="sidebar">
+        <%= render :partial => "shared/following", :locals => { :following => @following, :followers => @followers }%>
+      </div>
+
+      <%= yield %>       
     </div>
   </body>
 </html>
