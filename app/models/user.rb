@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   end
  
   def following?(followed)
-    friendships.find_by_followed_id(followed)
+    a = friendships.where(:followed_id => followed).first
+    a.present? ? true : false
   end
 
   def follow!(followed)
