@@ -1,6 +1,14 @@
+Factory.sequence :full_name do |n|
+  "test#{n}"
+end
+
+Factory.sequence :email do |n|
+  "test#{n}@example.com"
+end
+
 Factory.define :user do |u|
-  u.full_name 'John Smith'
-  u.email { Factory.next(:email) }
+  u.full_name { Factory.next(:full_name) }
+  u.email { Factory.next(:email) } 
   u.password '123456'
 end
 
@@ -17,3 +25,5 @@ end
 Factory.define :not_confirmed_user, :parent => :user do |u|
   u.confirmed_at nil
 end
+
+
