@@ -15,7 +15,6 @@ describe User do
   it { should validate_presence_of :full_name }
   
   before :all do
-    User.delete_all 
     @user = Factory(:user)
     @user_2 = Factory(:user)       
   end
